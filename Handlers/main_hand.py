@@ -7,6 +7,9 @@ router = Router()
 
 @router.message(F.text)
 async def cmd_start(message: types.Message):
-    reviews = get_reviews_from_wb(message.text)[1]
-    ans = analyze_reviews_with_gigachat(token=token, reviews=reviews)
+    reviews = get_reviews_from_wb(message.text)
+    if reviews[0]:
+        await message.answer(f'{reviews[1]}')
+        return
+    ans = analyze_reviews_with_gigachat(token=token, reviews=reviews[1])
     await message.answer(f"{ans}")
