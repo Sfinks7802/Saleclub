@@ -3,6 +3,7 @@ from aiogram.filters import Command, CommandStart
 
 router = Router()
 
-@router.message(Command('start'))
+
+@router.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer(f'{message.text}')
+    await message.answer(f"{message.text}")
